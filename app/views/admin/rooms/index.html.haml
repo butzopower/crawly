@@ -1,0 +1,13 @@
+%h2 Rooms
+= link_to 'New Room', new_admin_room_path
+
+%table
+  %thead
+    %tr
+      %td Name
+      %td Description
+  %tbody
+    - @rooms.each do |room|
+      %tr
+        %td= room.name
+        %td= room.description
