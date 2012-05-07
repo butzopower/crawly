@@ -1,5 +1,6 @@
 Crawly::Application.routes.draw do
   namespace :admin do
+    root :to => 'dashboard#index'
     resources :rooms
   end
 

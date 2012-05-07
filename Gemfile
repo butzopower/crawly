@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
+gem 'compass-rails'
+gem 'compass_twitter_bootstrap', git: 'https://github.com/vwall/compass-twitter-bootstrap.git'
 gem 'haml-rails'
 gem 'inherited_resources'
 gem 'pg'

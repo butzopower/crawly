@@ -7,4 +7,14 @@
   = csrf_meta_tags
 
   %body
-    = yield
+    .container
+      .page-header
+        - header = yield(:header)
+        %h2= header.present? ? header : 'Admin'
+      .row-fluid
+        .span3
+          = render 'layouts/admin/nav'
+        .span9
+          - if notice
+            .alert= notice
+          = yield

@@ -7,7 +7,8 @@ describe 'The Room admin page' do
   end
 
   def create_room
-    visit '/admin/rooms'
+    visit '/admin'
+    click_link 'Rooms'
     click_link 'New Room'
     fill_in 'Name', with: 'Outside'
     fill_in 'Description', with: "It's a beautiful sunny day out."
@@ -17,7 +18,8 @@ describe 'The Room admin page' do
   end
 
   def edit_room
-    visit '/admin/rooms'
+    visit '/admin'
+    click_link 'Rooms'
     click_link 'Edit'
     fill_in 'Name', with: 'Inside'
     fill_in 'Description', with: "Inside there is a big cake."

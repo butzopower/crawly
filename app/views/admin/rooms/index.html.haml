@@ -1,7 +1,6 @@
-%h2 Rooms
-= link_to 'New Room', new_admin_room_path
+- provide(:header) { 'Rooms' }
 
-%table
+%table.table.table-bordered.table-striped
   %thead
     %tr
       %td Name
@@ -13,3 +12,5 @@
         %td= room.name
         %td= room.description
         %td= link_to 'Edit', edit_admin_room_path(room)
+
+= link_to 'New Room', new_admin_room_path, class: 'btn btn-primary new-button'
