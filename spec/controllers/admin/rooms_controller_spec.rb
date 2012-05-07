@@ -35,4 +35,31 @@ describe Admin::RoomsController do
 
     its(:response) { should redirect_to admin_rooms_path }
   end
+
+  describe 'GET #edit' do
+    let(:room) { create :room }
+
+    before do
+      get :edit, id: room.to_param
+    end
+
+    its(:response) { should be_success }
+    it { assigns(:room).should == room }
+  end
+
+  describe 'PUT #update' do
+    let(:room) { create :room }
+
+    before do
+      put :update, id: room.to_param, room: {name: 'My Room', description: 'Plain white room'}
+    end
+
+    it 'should update the room' do
+      room.reload
+      room.name.should == 'My Room'
+      room.description.should == 'Plain white room'
+    end
+
+    its(:response) { should redirect_to admin_rooms_path }
+  end
 end

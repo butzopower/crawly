@@ -6,8 +6,10 @@
     %tr
       %td Name
       %td Description
+      %td Actions
   %tbody
     - @rooms.each do |room|
       %tr
         %td= room.name
         %td= room.description
+        %td= link_to 'Edit', edit_admin_room_path(room)
