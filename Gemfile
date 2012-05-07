@@ -13,6 +13,7 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'heroku'
   gem 'rspec-rails'
 end
 
