@@ -1,0 +1,6 @@
+.description
+  %strong Description:
+  = @room.description
+.exits
+  - @exits.each do |exit|
+    = button_to exit.name, room_move_path(@room, exit_id: exit.id)
