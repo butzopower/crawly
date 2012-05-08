@@ -1,12 +1,18 @@
-= simple_form_for [:admin, @room], class: 'form-horizontal' do |f|
-  = f.input :name
-  = f.input :description
+.span4
+  = simple_form_for [:admin, @room], class: 'form-horizontal' do |f|
+    = f.input :name
+    = f.input :description
 
-  = f.label :exits
-  %ul.exits
-    = f.simple_fields_for :exits do |exit|
-      %li
-        = exit.input :name
-        = exit.input :destination_id, as: :select, collection: Room.all
+    = f.label :exits
+    %ul.exits
+      = f.simple_fields_for :exits do |exit|
+        %li
+          %a.close{href: '#'} X
+          = exit.input :name
+          = exit.input :destination_id, as: :select, collection: Room.all
+          = exit.input :_destroy, as: :hidden, value: '0', input_html: { class: 'destroy-field' }
 
-  = f.submit
+    = f.submit
+
+:javascript
+  new crawly.admin.views.RoomFormView({el: 'form'});
