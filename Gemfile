@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.3'
 
@@ -19,6 +19,7 @@ end
 
 group :test, :development do
   gem 'heroku'
+  gem 'jasmine', :git => 'git://github.com/pivotal/jasmine-gem.git'
   gem 'rspec-rails'
 end
 
