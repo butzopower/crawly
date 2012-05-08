@@ -19,6 +19,12 @@ describe Admin::RoomsController do
     its(:response) { should be_success }
     it { assigns(:room).should be_new_record }
     it { assigns(:room).should be_a(Room) }
+
+    it 'should give a room a new exit' do
+      assigns(:room).exits.size.should == 1
+      assigns(:room).exits.last.should be_new_record
+      assigns(:room).exits.last.should be_a(Exit)
+    end
   end
 
   describe 'POST #create' do
@@ -37,7 +43,7 @@ describe Admin::RoomsController do
   end
 
   describe 'GET #edit' do
-    let(:room) { create :room }
+    let(:room) { create :room, exits: [create(:exit)] }
 
     before do
       get :edit, id: room.to_param
@@ -45,6 +51,12 @@ describe Admin::RoomsController do
 
     its(:response) { should be_success }
     it { assigns(:room).should == room }
+    it 'should give the room a new exit' do
+      assigns(:room).exits.size.should == 2
+      assigns(:room).exits.last.should be_new_record
+      assigns(:room).exits.last.should be_a(Exit)
+    end
+
   end
 
   describe 'PUT #update' do

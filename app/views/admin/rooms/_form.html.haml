@@ -2,4 +2,11 @@
   = f.input :name
   = f.input :description
 
+  = f.label :exits
+  %ul.exits
+    = f.simple_fields_for :exits do |exit|
+      %li
+        = exit.input :name
+        = exit.input :destination_id, as: :select, collection: Room.all
+
   = f.submit
