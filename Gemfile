@@ -8,6 +8,7 @@ gem 'haml-rails'
 gem 'inherited_resources'
 gem 'pg'
 gem 'simple_form'
+gem 'thin'
 
 group :assets do
   gem 'compass-rails'
