@@ -1,6 +1,13 @@
 .description
   %strong Description:
   = @room.description
+
+- unless @room.items.empty?
+  .items
+    %strong Items:
+    - @room.items.each do |item|
+      There is a #{item.name} here.
+
 .exits
   - @exits.each do |exit|
     = button_to exit.name, room_move_path(@room, exit_id: exit.id)

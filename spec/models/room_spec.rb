@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Room do
   it { should have_many :exits }
+  it { should have_many :items }
   it { should accept_nested_attributes_for(:exits).allow_destroy(true) }
   it 'should not allow blank exits' do
     subject.exits_attributes = [{name: '', destination_id: ''}]
