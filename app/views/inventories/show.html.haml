@@ -1,0 +1,5 @@
+%h2 Current Inventory (#{pluralize(@items.size, 'item', 'items')})
+
+%ul
+  - @items.each do |item|
+    %li= "A #{item.name}"

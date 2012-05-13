@@ -4,6 +4,7 @@ Crawly::Application.routes.draw do
     resources :rooms
   end
 
+  resource :inventory, only: :show
   resources :rooms do
     resource :move
   end
