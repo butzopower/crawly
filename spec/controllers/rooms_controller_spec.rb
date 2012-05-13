@@ -4,6 +4,7 @@ describe RoomsController do
   let(:room) do
     create(:room).tap do |room|
       room.exits << create(:exit)
+      room.items << create(:item)
     end
   end
 
@@ -18,6 +19,10 @@ describe RoomsController do
 
     it 'should assign the exits' do
       assigns(:exits).should == room.exits
+    end
+
+    it 'should assign the items' do
+      assigns(:items).should == room.items
     end
   end
 end

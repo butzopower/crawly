@@ -2,11 +2,15 @@
   %strong Description:
   = @room.description
 
-- unless @room.items.empty?
+- unless @items.empty?
   .items
-    %strong Items:
-    - @room.items.each do |item|
-      There is a #{item.name} here.
+    %strong #{pluralize(@items.size, 'Item', 'Items')} here:
+    %ul
+    - @items.each do |item|
+      %li
+        %span
+          A #{item.name}
+          = button_to 'Pick Up', room_pick_up_path(@room, item_id: item.id)
 
 .exits
   - @exits.each do |exit|

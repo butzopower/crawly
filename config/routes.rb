@@ -7,6 +7,7 @@ Crawly::Application.routes.draw do
   resource :inventory, only: :show
   resources :rooms do
     resource :move
+    resource :pick_up
   end
 
   root :to => 'dashboard#index'

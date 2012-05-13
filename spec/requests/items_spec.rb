@@ -15,12 +15,23 @@ describe "Item interactions" do
   end
 
   describe "A room having items" do
-    it 'should show the items' do
+    before do
       room = create(:room, name: 'Labratory')
       item = create(:item, name: 'Test Tube', room: room)
 
       visit room_path(room)
-      page.should have_content 'There is a Test Tube here.'
+    end
+
+    it 'should show the items' do
+      page.should have_content '1 Item here'
+      page.should have_content 'A Test Tube'
+    end
+
+    it 'should allow the user to pick up the item' do
+      click_button 'Pick Up'
+
+      click_link 'Inventory'
+      page.should have_content 'A Test Tube'
     end
   end
 end
