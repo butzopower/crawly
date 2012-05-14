@@ -12,6 +12,7 @@ describe DashboardController do
     it 'should set the current_user' do
       expect { get :index }.to change(User, :count).by(1)
       session[:user_id].should == User.last.id
+      User.last.room.should == Room.first
     end
   end
 end

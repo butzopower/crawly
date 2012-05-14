@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
 
   def current_user
     if session[:user_id].present?
-      User.find(session[:user_id])
+      @current_user ||= User.find(session[:user_id])
     else
-      User.create.tap{|user| session[:user_id] = user.id }
+      @current_user = User.create.tap{|user| session[:user_id] = user.id }
     end
   end
 end

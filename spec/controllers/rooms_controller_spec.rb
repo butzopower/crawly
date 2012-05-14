@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe RoomsController do
+  let(:user) { create(:user) }
   let(:room) do
     create(:room).tap do |room|
       room.exits << create(:exit)
@@ -10,19 +11,37 @@ describe RoomsController do
 
   describe "GET #show" do
     before do
-      get :show, id: room.to_param
+      subject.stub(:current_user).and_return(user)
     end
 
-    it 'should assign the room' do
-      assigns(:room).should == room
+    context 'user is in the room' do
+      before do
+        user.room = room
+        user.save
+        get :show, id: room.to_param
+      end
+
+      it 'should assign the room' do
+        assigns(:room).should == room
+      end
+
+      it 'should assign the exits' do
+        assigns(:exits).should == room.exits
+      end
+
+      it 'should assign the items' do
+        assigns(:items).should == room.items
+      end
     end
 
-    it 'should assign the exits' do
-      assigns(:exits).should == room.exits
-    end
+    context 'user is in another room' do
+      it 'should redirect them to that room' do
+        other_room = create(:room, name: 'Some other room')
+        user.room = other_room
 
-    it 'should assign the items' do
-      assigns(:items).should == room.items
+        get :show, id: room.to_param
+        response.should redirect_to room_path(other_room)
+      end
     end
   end
 end

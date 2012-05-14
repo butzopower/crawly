@@ -12,9 +12,14 @@ describe "A really simple hallway" do
     page.should have_content('Further down the hallway.')
   end
 
+  it 'should not let the user teleport from the room' do
+    visit room_path(@room1)
+    page.current_path.should == room_path(@room2)
+  end
+
   def setup_dungeon
-    room1 = create :room, description: 'The start of the hallway.'
-    room2 = create :room, description: 'Further down the hallway.'
-    room1.exits << create(:exit, name: 'Continue', destination: room2)
+    @room1 = create :room, description: 'The start of the hallway.'
+    @room2 = create :room, description: 'Further down the hallway.'
+    @room1.exits << create(:exit, name: 'Continue', destination: @room2)
   end
 end

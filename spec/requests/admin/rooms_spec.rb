@@ -50,6 +50,7 @@ describe 'The Room admin page' do
 
     click_button 'Update'
 
+    visit '/'
     visit room_path(@room1)
 
     click_button 'Go to the office'
@@ -68,6 +69,8 @@ describe 'The Room admin page' do
     end
 
     click_button 'Update'
+
+    visit '/'
     visit room_path(@room1)
     page.should_not have_button('Go to the office')
   end

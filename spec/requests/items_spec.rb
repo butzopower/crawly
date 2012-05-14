@@ -19,6 +19,7 @@ describe "Item interactions" do
       room = create(:room, name: 'Labratory')
       item = create(:item, name: 'Test Tube', room: room)
 
+      visit '/'
       visit room_path(room)
     end
 
