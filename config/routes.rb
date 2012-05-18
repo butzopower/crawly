@@ -9,6 +9,7 @@ Crawly::Application.routes.draw do
   resources :rooms do
     resource :move
     resource :pick_up
+    resource :drop
   end
 
   root :to => 'dashboard#index'
