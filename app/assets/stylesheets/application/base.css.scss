@@ -1,6 +1,17 @@
 @import "compass/reset";
 
+$baseFontSize: 16px;
+$baseLineHeight: 20px;
+
+@import "compass_twitter_bootstrap";
+@import "compass_twitter_bootstrap_responsive";
+
+
 .header {
+  margin-bottom: 20px;
+}
+
+.description {
   margin-bottom: 20px;
 }
 
@@ -9,6 +20,15 @@
     display: inline;
     div {
       display: inline;
+    }
+  }
+}
+
+.exits {
+  .button_to {
+    margin: 0;
+    input[type="submit"] {
+      padding: 5px;
     }
   }
 }
