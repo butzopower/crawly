@@ -1,7 +1,0 @@
-%h2 Current Inventory (#{pluralize(@items.size, 'item', 'items')})
-
-%ul.items
-  - @items.each do |item|
-    %li
-      = "A #{item.name}"
-      = button_to 'Drop', room_drop_path(@room, item_id: item.id)

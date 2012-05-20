@@ -9,8 +9,11 @@ describe "Item interactions" do
       wait_until { @user = User.last }
       item = create(:item, name: 'Machine Gun', user: @user)
 
-      click_link 'View Inventory'
-      page.should have_content 'A Machine Gun'
+      visit '/'
+
+      within('.inventory') do
+        page.should have_content 'A Machine Gun'
+      end
     end
   end
 
@@ -24,26 +27,41 @@ describe "Item interactions" do
     end
 
     it "should show it's' items" do
-      page.should have_content '1 Item here'
-      page.should have_content 'A Test Tube'
+      within('.room') do
+        page.should have_content '1 Item here'
+        page.should have_content 'A Test Tube'
+      end
     end
 
     it 'should allow the user to pick up the item' do
-      click_button 'Pick Up'
+      within('.room') do
+        click_button 'Pick Up'
+      end
 
-      click_link 'Inventory'
-      page.should have_content 'A Test Tube'
+      within('.inventory') do
+        page.should have_content 'A Test Tube'
+      end
     end
 
     it 'should allow the user to drop the item' do
-      page.should have_content '1 Item here'
-      page.should have_content 'A Test Tube'
-      click_button 'Pick Up'
-      page.should have_no_content 'A Test Tube'
-      click_link 'Inventory'
-      click_button 'Drop'
-      page.should have_content '1 Item here'
-      page.should have_content 'A Test Tube'
+      within('.room') do
+        page.should have_content '1 Item here'
+        page.should have_content 'A Test Tube'
+        click_button 'Pick Up'
+      end
+
+      within('.room') do
+        page.should have_no_content 'A Test Tube'
+      end
+
+      within('.inventory') do
+        click_button 'Drop'
+      end
+
+      within('.room') do
+        page.should have_content '1 Item here'
+        page.should have_content 'A Test Tube'
+      end
     end
   end
 end

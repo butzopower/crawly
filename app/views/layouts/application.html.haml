@@ -10,4 +10,8 @@
     .header
       = render 'layouts/application/header'
     .container
-      = yield
+      .row-fluid
+        .span8
+          = yield
+        .span4
+          = render 'layouts/application/inventory'

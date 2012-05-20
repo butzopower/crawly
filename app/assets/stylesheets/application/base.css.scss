@@ -11,11 +11,19 @@ $baseLineHeight: 20px;
   margin-bottom: 20px;
 }
 
-.description {
+.inventory {
+  background-image: url('/assets/inventory_background.png');
+  color: #FFF;
+  h2 {
+    color: #FFF;
+  }
+}
+
+.description, .items, .exits {
   margin-bottom: 20px;
 }
 
-.items {
+.items, .exits {
   .button_to {
     display: inline;
     div {

@@ -1,0 +1,8 @@
+.well.inventory
+  %h2 Inventory
+
+  %ul.items
+    - current_user.items.each do |item|
+      %li
+        = "A #{item.name}"
+        = button_to 'Drop', room_drop_path(current_user.room, item_id: item.id), class: 'btn btn-warning'

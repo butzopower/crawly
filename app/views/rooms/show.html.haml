@@ -1,17 +1,19 @@
-.description
-  %strong Description:
-  = @room.description
+.room
+  %h1= @room.name
+  .description
+    %strong Description:
+    = @room.description
 
-- unless @items.empty?
-  .items
-    %strong #{pluralize(@items.size, 'Item', 'Items')} here:
-    %ul
-    - @items.each do |item|
-      %li
-        %span
-          A #{item.name}
-          = button_to 'Pick Up', room_pick_up_path(@room, item_id: item.id)
+  - unless @items.empty?
+    .items
+      %strong #{pluralize(@items.size, 'Item', 'Items')} here:
+      %ul
+      - @items.each do |item|
+        %li
+          %span
+            A #{item.name}
+            = button_to 'Pick Up', room_pick_up_path(@room, item_id: item.id), class: 'btn btn-warning'
 
-.exits
-  - @exits.each do |exit|
-    = button_to exit.name, room_move_path(@room, exit_id: exit.id)
+  .exits
+    - @exits.each do |exit|
+      = button_to exit.name, room_move_path(@room, exit_id: exit.id), class: 'btn btn-danger'
