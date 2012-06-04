@@ -40,3 +40,14 @@ $baseLineHeight: 20px;
     }
   }
 }
+
+.item-header{
+  i {
+    float: right;
+    margin-top: 3px;
+  }
+}
+
+.accordion-toggle {
+  cursor: pointer;
+}

@@ -20,7 +20,7 @@ describe "Item interactions" do
   describe "A room" do
     before do
       room = create(:room, name: 'Labratory')
-      item = create(:item, name: 'Test Tube', room: room)
+      @item = create(:item, name: 'Test Tube', room: room)
 
       visit '/'
       visit room_path(room)
@@ -33,8 +33,9 @@ describe "Item interactions" do
       end
     end
 
-    it 'should allow the user to pick up the item' do
+    it 'should allow the user to pick up the item', js: true do
       within('.room') do
+        page.find("#item-#{@item.id}-header").click
         click_button 'Pick Up'
       end
 

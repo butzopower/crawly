@@ -7,13 +7,21 @@
   - unless @items.empty?
     .items
       %strong #{pluralize(@items.size, 'Item', 'Items')} here:
-      %ul
+      .accordion
       - @items.each do |item|
-        %li
-          %span
-            A #{item.name}
-            = button_to 'Pick Up', room_pick_up_path(@room, item_id: item.id), class: 'btn btn-warning'
+        .accordion-group
+          .accordion-heading
+            .accordion-toggle{id: "item-#{item.id}-header", 'data-toggle' => 'collapse', 'data-target' => "#item-#{item.id}-body" }
+              %span.item-header
+                A #{item.name}
+                %i.icon-eye-open
+          .accordion-body.collapse{id: "item-#{item.id}-body"}
+            .accordion-inner
+              = button_to 'Pick Up', room_pick_up_path(@room, item_id: item.id), class: 'btn btn-warning'
 
   .exits
     - @exits.each do |exit|
       = button_to exit.name, room_move_path(@room, exit_id: exit.id), class: 'btn btn-danger'
+
+:javascript
+  new crawly.views.RoomView({el: 'body'});
