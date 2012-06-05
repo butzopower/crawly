@@ -1,8 +1,4 @@
 - provide(:header) { 'New Item' }
 
 .span4
-  = simple_form_for [:admin, @item], class: 'form-horizontal' do |f|
-    = f.input :name
-    = f.input :room_id, as: :select, collection: Room.all
-
-    = f.submit
+  = render 'form'

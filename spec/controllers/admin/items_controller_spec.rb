@@ -29,4 +29,32 @@ describe Admin::ItemsController do
       Item.last.room_id.should == room.id
     end
   end
+
+  describe 'GET #edit' do
+    let(:item) { create :item }
+
+    it 'should load the item' do
+      get :edit, id: item.to_param
+
+      assigns(:item).should == item
+    end
+  end
+
+  describe 'PUT #update' do
+    let(:item) { create :item, name: 'A gun' }
+    def make_request
+      put :update, id: item.to_param, item: { name: 'A sword' }
+    end
+
+    it 'should update the item' do
+      expect {
+        make_request
+      }.to change{ item.reload.name }.from('A gun').to('A sword')
+    end
+
+    it 'should redirect to index' do
+      make_request
+      response.should redirect_to action: :index
+    end
+  end
 end

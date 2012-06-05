@@ -6,11 +6,13 @@
       %td Name
       %td Room
       %td User ID
+      %td Actions
   %tbody
     - @items.each do |item|
       %tr{id: "item#{item.id}"}
         %td= item.name
         %td= item.room.try(:name)
         %td= item.user.try(:id)
+        %td= link_to 'Edit', edit_admin_item_path(item)
 
 = link_to 'New Item', new_admin_item_path, class: 'btn btn-primary new-button'
